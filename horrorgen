@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+import markup
+import sys
+
+from random import randint, choice
+
+
+possibilities = [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,3,4]
+
+"""literally spam images all over the page"""
+def spam_images(page, images):
+    for image in images:
+        for i in xrange(0,choice(possibilities)):
+            page.img(
+                src=image,
+                style='position:absolute; left:%dpx; top:%dpx;' \
+                % (randint(0,1000), randint(0,1000))
+            )
+
+
+if __name__ == "__main__":
+    if len(sys.argv) == 2:
+        image_file = sys.argv[1]
+        image_file = open(image_file, "r")
+        images = []
+
+        for line in image_file.readlines():
+            images.append(line)
+        page = markup.page()
+        page.init(title="horrorgenned page")
+        spam_images(page, images)
+        output_html = open("index.html", "w")
+        output_html.write(str(page))
+        output_html.flush()
+        output_html.close()
+
+    else:
+        print "usage is ./horrorgen image_file where image file contains a\
+        list of newline separated images" 
