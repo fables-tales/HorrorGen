@@ -18,6 +18,25 @@ def spam_images(page, images):
             )
 
 
+def flashy_background(page):
+    x = randint(0, 1 << 24)
+    color_a = "#%06x" % x
+    color_b = "#%06x" % ((1 << 24) - x)
+    page.script("""
+        function f() {
+            if (document.bgColor == "%s") {
+                document.bgColor = "%s"
+            } else {
+                document.bgColor = "%s"
+            }
+        }
+
+        setInterval(f, 100)
+        document.bgColor = "%s"
+
+    """ % (color_a, color_b, color_a, color_a), type="text/javascript")
+
+
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         image_file = sys.argv[1]
@@ -30,6 +49,7 @@ if __name__ == "__main__":
         page = markup.page()
         page.init(title="horrorgenned page")
         spam_images(page, images)
+        flashy_background(page)
         output_html = open("index.html", "w")
         output_html.write(str(page))
         output_html.flush()
