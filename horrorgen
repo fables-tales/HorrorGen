@@ -5,7 +5,7 @@ import sys
 from random import randint, choice
 
 
-possibilities = [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,3,4]
+possibilities = [1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,3,4]
 
 """literally spam images all over the page"""
 def spam_images(page, images):
