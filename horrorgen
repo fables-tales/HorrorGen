@@ -14,7 +14,7 @@ def spam_images(page, images):
             page.img(
                 src=image,
                 style='position:absolute; left:%dpx; top:%dpx;' \
-                % (randint(0,1000), randint(0,1000))
+                % (randint(0,600), randint(0,600))
             )
 
 
