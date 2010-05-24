@@ -4,6 +4,7 @@ import sys
 
 from random import randint, choice
 
+under_construction = "./const.gif"
 
 possibilities = [1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,3,4]
 
@@ -17,6 +18,10 @@ def spam_images(page, images):
                 % (randint(0,600), randint(0,600))
             )
 
+
+def bannerize_under_construction(page):
+    imgs = [under_construction]*randint(5,10)
+    page.table(markup.oneliner.tr(markup.oneliner.td(markup.oneliner.img(src=imgs))))
 
 def flashy_background(page):
     x = randint(0, 1 << 24)
@@ -59,6 +64,7 @@ if __name__ == "__main__":
         spam_images(page, images)
         flashy_background(page)
         add_ie6(page)
+        bannerize_under_construction(page)
         output_html = open("index.html", "w")
         output_html.write(str(page))
         output_html.flush()
