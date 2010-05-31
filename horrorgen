@@ -12,11 +12,11 @@ possibilities = [1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,3,4]
 def spam_images(page, images):
     for image in images:
         for i in xrange(0,choice(possibilities)):
-            page.img(
+            page.marquee(markup.oneliner.img(
                 src=image,
                 style='position:absolute; left:%dpx; top:%dpx;' \
                 % (randint(0,600), randint(0,600))
-            )
+            ))
 
 
 def bannerize_under_construction(page):
@@ -49,6 +49,7 @@ def add_ie6(page):
 setInterval("y()", 500);
 
     """, type="text/javascript")
+
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
